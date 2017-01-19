@@ -6,8 +6,7 @@ import java.util.List;
 public class Calculator {
 
     private final List<Integer> accumulators;
-    private int borrar;
-
+    
     public Calculator() {
         this.accumulators = new ArrayList<>();
     }
