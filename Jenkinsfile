@@ -63,5 +63,18 @@ node {
    // ------------------------------------
    stage 'CheckStyle'
    step([$class: 'hudson.plugins.checkstyle.CheckStylePublisher', pattern: '**/target/checkstyle-result.xml'])
+   
+   // ------------------------------------
+   // -- ETAPA: CheckStyle
+   // ------------------------------------
+   stage 'PmdPublisher'
+   step([$class: 'PmdPublisher', pattern: '**/target/pmd.xml'])
+   
+   // ------------------------------------
+   // -- ETAPA: FindBugs
+   // ------------------------------------
+   stage 'FindBugs'
+	step([$class: 'FindBugsPublisher', pattern: '**/findbugsXml.xml'])
+   
 
 }
