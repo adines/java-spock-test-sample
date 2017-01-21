@@ -50,4 +50,12 @@ node {
    stage 'Archivar'
    echo 'Archiva el paquete el paquete generado en Jenkins'
    step([$class: 'ArtifactArchiver', artifacts: '**/target/*.jar, **/target/*.war', fingerprint: true])
+   
+   // ------------------------------------
+   // -- ETAPA: Cobertura de código
+   // ------------------------------------
+   stage 'Code Coverage (Cobertura de codigo)' 
+   echo 'Comprueba la cobertura que hacen los test sobre el código desarrollado'
+   step([$class: 'JacocoPublisher', execPattern: '**/**.exec', exclusionPattern: '**/*Test*.class'])
+
 }
