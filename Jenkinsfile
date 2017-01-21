@@ -70,7 +70,7 @@ node {
    	step([$class: 'hudson.plugins.checkstyle.CheckStylePublisher', pattern: '**/target/checkstyle-result.xml'])
    
    // ------------------------------------
-   // -- ETAPA: CheckStyle
+   // -- ETAPA: PMD
    // ------------------------------------
    	stage 'PmdPublisher'
    	step([$class: 'PmdPublisher'])
