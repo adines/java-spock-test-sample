@@ -57,5 +57,16 @@ node {
    stage 'Code Coverage (Cobertura de codigo)' 
    echo 'Comprueba la cobertura que hacen los test sobre el código desarrollado'
    step([$class: 'JacocoPublisher', execPattern: '**/**.exec', exclusionPattern: '**/*Test*.class'])
+   
+   // ------------------------------------
+   // -- ETAPA: CheckStyle
+   // ------------------------------------
+   stage 'CheckStyle'
+   step([$class: "CheckStylePublisher",
+      canComputeNew: false,
+      defaultEncoding: "",
+      healthy: "",
+      pattern: "build/reports/checkstyle/main.xml",
+      unHealthy: ""])
 
 }
