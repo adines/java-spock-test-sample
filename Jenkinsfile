@@ -73,13 +73,12 @@ node {
    // -- ETAPA: CheckStyle
    // ------------------------------------
    	stage 'PmdPublisher'
-   	step([$class: 'PmdPublisher', pattern: '**/target/pmd.xml'])
+   	step([$class: 'PmdPublisher'])
    
    // ------------------------------------
-   // -- ETAPA: FindBugs
+   // -- ETAPA: AnalysisPublisher
    // ------------------------------------
-   	stage 'FindBugs'
-	step([$class: 'FindBugsPublisher', pattern: '**/findbugsXml.xml'])
+   	stage 'AnalysisPublisher'
 	step([$class: 'AnalysisPublisher'])
    
 
