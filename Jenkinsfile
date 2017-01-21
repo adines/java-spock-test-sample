@@ -62,11 +62,6 @@ node {
    // -- ETAPA: CheckStyle
    // ------------------------------------
    stage 'CheckStyle'
-   step([$class: "CheckStylePublisher",
-      canComputeNew: false,
-      defaultEncoding: "",
-      healthy: "",
-      pattern: "build/reports/checkstyle/main.xml",
-      unHealthy: ""])
+   step([$class: 'hudson.plugins.checkstyle.CheckStylePublisher', pattern: '**/target/checkstyle-result.xml'])
 
 }
