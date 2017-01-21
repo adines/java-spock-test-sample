@@ -80,6 +80,7 @@ node {
    // ------------------------------------
    	stage 'FindBugs'
 	step([$class: 'FindBugsPublisher', pattern: '**/findbugsXml.xml'])
+	step([$class: 'AnalysisPublisher'])
    
 
 }
