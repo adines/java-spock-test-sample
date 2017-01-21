@@ -61,22 +61,24 @@ node {
    checkout scm
    def mavenSettingsFile = " ${mvnHome}/conf/settings.xml"
 	sh "mvn -s ${mavenSettingsFile} clean source:jar javadoc:javadoc checkstyle:checkstyle pmd:pmd findbugs:findbugs package"
+	step([$class: 'WarningsPublisher', consoleParsers: [[parserName: 'Maven']]])
+	step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
    // ------------------------------------
    // -- ETAPA: CheckStyle
    // ------------------------------------
-   stage 'CheckStyle'
-   step([$class: 'hudson.plugins.checkstyle.CheckStylePublisher', pattern: '**/target/checkstyle-result.xml'])
+   	stage 'CheckStyle'
+   	step([$class: 'hudson.plugins.checkstyle.CheckStylePublisher', pattern: '**/target/checkstyle-result.xml'])
    
    // ------------------------------------
    // -- ETAPA: CheckStyle
    // ------------------------------------
-   stage 'PmdPublisher'
-   step([$class: 'PmdPublisher', pattern: '**/target/pmd.xml'])
+   	stage 'PmdPublisher'
+   	step([$class: 'PmdPublisher', pattern: '**/target/pmd.xml'])
    
    // ------------------------------------
    // -- ETAPA: FindBugs
    // ------------------------------------
-   stage 'FindBugs'
+   	stage 'FindBugs'
 	step([$class: 'FindBugsPublisher', pattern: '**/findbugsXml.xml'])
    
 
