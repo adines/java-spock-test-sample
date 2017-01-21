@@ -58,6 +58,9 @@ node {
    echo 'Comprueba la cobertura que hacen los test sobre el código desarrollado'
    step([$class: 'JacocoPublisher', execPattern: '**/**.exec', exclusionPattern: '**/*Test*.class'])
    
+   checkout scm
+   def mavenSettingsFile = " ${mvnHome}/conf/settings.xml"
+	sh "mvn -s ${mavenSettingsFile} clean source:jar javadoc:javadoc checkstyle:checkstyle pmd:pmd findbugs:findbugs package"
    // ------------------------------------
    // -- ETAPA: CheckStyle
    // ------------------------------------
